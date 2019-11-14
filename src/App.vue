@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+    <PairAdd />
+    <PairRem />
+    <Table />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Table from './components/Table.vue'
+import PairAdd from './components/PairAdd.vue'
+import PairRem from './components/PairRem.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
-  }
+    Table,
+    PairAdd,
+    PairRem,
+  },
+  created() {
+    this.$store.dispatch('fetch')
+    setInterval(() => {
+      this.$store.dispatch('fetch')
+      }, 15000)
+  },
+
 }
 </script>
 
 <style>
+@import '~animate.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
